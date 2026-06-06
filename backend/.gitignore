@@ -1,0 +1,7 @@
+.env
+backend/.env
+
+*.db
+backend/chat.db
+
+node_modules/
