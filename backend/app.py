@@ -27,7 +27,7 @@ def ask_ENGINEO(chat_history):
         formatted_history = [{"role": msg["role"], "content": msg["content"]} for msg in chat_history]
         
         data = {
-            "model": "meta-llama/llama-3-8b-instruct:free",
+            "model": "openai/gpt-oss-120b:free",
             "messages": formatted_history
         }
         
