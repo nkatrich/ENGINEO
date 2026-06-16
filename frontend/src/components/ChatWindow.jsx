@@ -1,4 +1,6 @@
 import React from 'react';
+// 1. Импортируем парсер Markdown
+import Markdown from 'react-markdown';
 
 function ChatWindow({ messages }) {
   return (
@@ -24,7 +26,14 @@ function ChatWindow({ messages }) {
                 }}
               >
                 <strong>{isUser ? 'Вы: ' : 'ИИ: '}</strong>
-                {msg.content}
+                
+                {/* 2. Если это пользователь, выводим как обычный текст. 
+                       Если ИИ — прогоняем через парсер Markdown */}
+                {isUser ? (
+                  msg.content
+                ) : (
+                  <Markdown style={styles.markdown}>{msg.content}</Markdown>
+                )}
               </div>
             </div>
           );
@@ -37,7 +46,9 @@ function ChatWindow({ messages }) {
 const styles = {
   window: { flex: 1, border: '1px solid #ccc', borderRadius: '5px', padding: '15px', overflowY: 'auto', backgroundColor: '#f9f9f9', minHeight: '300px', maxHeight: '400px' },
   messageRow: { display: 'flex', margin: '10px 0' },
-  bubble: { padding: '10px 15px', borderRadius: '15px', maxWidth: '70%' }
+  bubble: { padding: '10px 15px', borderRadius: '15px', maxWidth: '70%' },
+  // Немного сбросим внешние отступы внутри маркдауна, чтобы текст не прыгал
+  markdown: { margin: 0 }
 };
 
 export default ChatWindow;
